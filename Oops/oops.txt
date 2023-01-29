@@ -1,0 +1,832 @@
+Exp 1 (a) Write a program for multiplication of two matrices
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+ int m,n,p,q,i,j,k;
+ cout << "Program to perform multiplication of 2 matrix \n";
+ while (1){
+ cout << ("Enter no. of rows in 1st matrix: ");
+ cin >> (m);
+ cout << ("Enter no. of columns in 1st matrix: ");
+ cin >> (n);
+ cout << ("Enter no. of rows in 2st matrix: ");
+ cin >> (p);
+ cout << ("Enter no. of columns in 2st matrix: ");
+ cin >> (q);
+ int a[m][n],b[p][q],c[m][q];
+ if (n==p){
+ cout << "Enter 1st matrix elements: \n ";
+ for (i=0;i<m;i++){
+ for (j=0;j<n;j++){
+ cin >> (a[i][j]);
+ }
+ }
+ cout<<"Enter 2nd matrix elements: \n";
+ for (i=0;i<p;i++){
+ for (j=0;j<q;j++){
+ cin >> (b[i][j]);
+ }
+2
+ }
+ cout<<"Multiplication of matrix : \n";
+ for (i=0;i<m;i++){
+ for (j=0;j<q;j++){
+ c[i][j]=0;
+ for (k=0;k<n;k++){
+ c[i][j] += a[i][k] * b[k][j];
+ }
+ cout << c[i][j]<<" ";
+ }
+ cout << ("\n");
+ }
+ break;
+ }
+ else{
+ cout << ("Number of rows of 1st and 2nd matrix should be same ! \n");
+ }
+ }
+ return 0;
+}
+
+  Exp1(b) write a program to read and display the details of the student using classes and objects
+
+#include <bits/stdc++.h>
+using namespace std;
+class myclass1{
+ private:
+ int num;
+ int rollno;
+ string father;
+ string mother;
+ int contact;
+ int sub1;
+ int sub2;
+ int sub3;
+ int sub4;
+ int sub5;
+ public:
+ void getdata(){
+ cout<<"Enter a integer : ";
+ cin>>num;
+ 
+ cout<<"Roll_no : ";
+ cin>>rollno;
+ 
+ cout<<"Enter father name : ";
+ cin>>father;
+ 
+ cout<<"Enter mother name: ";
+2
+ cin>>mother;
+ 
+ cout<<"Enter contact : ";
+ cin>>contact;
+ cout<<"sub1 : ";
+ cin>>sub1;
+ cout<<"sub2 : ";
+ cin>>sub2;
+ cout<<"sub3 :";
+ cin>>sub3;
+ cout<<"sub4 : ";
+ cin>>sub4;
+ cout<<"sub5 : ";
+ cin>>sub5;
+ }
+ void display(){
+ cout<<"num = "<<num<<endl;
+ cout<<"rollno= "<<rollno<<endl;
+ cout<<"father= "<<father<<endl;
+ cout<<"mother= "<<mother<<endl;
+ cout<<"contact= "<<contact<<endl;
+ cout<<"avg marks= "<<(sub1+sub2+sub3+sub4+sub5)/5;
+ }
+};
+3
+int main(){
+ myclass1 a1,b1,c1,d1,e1;
+ a1.getdata();
+ b1.getdata();
+ c1.getdata();
+ d1.getdata();
+ e1.getdata();
+ a1.display();
+ b1.display();
+ c1.display();
+ d1.display();
+ e1.display();
+} 
+
+  Exp2 Write a program to perform addition of two complex numbers using constructor overloading
+
+#include<iostream>
+using namespace std;
+class complexno
+{
+    int real,imag;
+    public:
+    complexno()
+    {
+        real=0;
+        imag=0;
+    }
+    complexno(int i)
+    {
+        real=i;
+        imag=i;
+    }
+    complexno(int a, int b){
+        real=a;
+        imag=b;
+    }
+    void add(complexno c1,complexno c2)
+    {
+        real=c1.real+c2.real;
+        imag=c1.imag+c2.imag;
+    }
+    void display()
+    {
+        cout<<real<<"+"<<imag<<"i";
+   }
+};
+int main()
+{
+    cout<<"\n\n program to find the addition of two complex numbers using constructor overloading ";
+    int real,imag;
+    cout<<"\n \n Enter a single value parts for real and imaginary  parts of first complex numbers " ;
+    cin>>real;
+    complexno c1(real);
+    cout<<"\n first complex number is given by : ";
+    c1.display();
+    cout<<"\n\n Enter the differnt values of real and imaginary parts of second complex numbers";
+    cin>>real>>imag;
+    complexno c2(real,imag);
+    cout<<"\n second complex number is given by : ";
+    c2.display();
+    complexno c3;
+    cout<<"\n \n initially third complex number is : ";
+    c3.display();
+    cout<<"\n\nstoring the result of addition of first and second complex number into third.....";
+    c3.add(c1,c2);
+    cout<<"\n\n now third complex number is";
+
+    c3.display();
+    cout<<"\n";
+    
+    return 0;
+}
+
+Exp3 write a program to find greatest of two given numbers in two different classes using friend function
+
+#include<iostream>
+using namespace std;
+class numb2;
+class numb{
+int x;
+public:
+void input(){
+cout<<"Enter your first number: ";
+cin>>x;
+}
+friend void find(numb a, numb2 b);
+friend class numb2;
+};
+class numb2{
+int y;
+public:
+void input(){
+cout<<"Enter your second number: ";
+cin>>y;
+}
+friend void find(numb a, numb2 b);
+friend class numb;
+};
+void find(numb a, numb2 b){
+if(a.x > b.y){
+cout<<a.x<< " is greater.";
+}
+else{
+cout<<b.y<<" is greater.";
+}
+}
+int main(){
+numb a;
+numb2 b;
+a.input();
+b.input();
+find(a, b);
+return 0;
+}
+
+Exp4 Implement a class string containing the following functions:
+a. Overload + operator to carry out the concatenation of strings
+b. Overload = operator to carry out string copy.
+c. Overload <= operator to carry out the comparison of strings.
+d. Function to display the length of a string.
+e. Function tolower() to convert upper case letters to lower case.
+f. Function toupper() to convert lower case letters to upper case.
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+class String
+{
+    char *s;
+    int size;
+    public:
+    String(char *c)
+    {
+        size = strlen(c);
+        s = new char[size];
+        strcpy(s,c);
+    }
+    char* operator +(char *s1)
+    {
+        size = strlen(s)+strlen(s1);
+        char *s2 = new char[strlen(s)];
+        strcpy(s2,s);
+        s = new char[size];
+        strcpy(s,s2);
+        strcat(s,s1);
+        return s;
+    }
+    char* operator =(char *s1)
+    {
+        size = strlen(s1);
+        s = new char[size];
+        strcpy(s,s1);
+        return s;
+    }
+ 
+    bool operator <=(char *s1)
+    {
+        return strcmp(s,s1);
+    }
+    void display()
+    {
+        cout<<"\n\n String stored in class = "<<s;
+    }
+    void displaylength()
+    {
+        cout<<"\n\n Length of string stored in class = "<<size;
+    } 
+    void Tolower()
+    {
+        cout<<"\n\n String converted to lowercase";
+        for(int i=0;i<size;i++)
+        {
+            if(isupper(s[i]))
+            s[i] = (char)tolower(s[i]);
+        }
+        display();
+    }
+    void Toupper()
+    {
+        cout<<"\n\n String converted to uppercase";
+        for(int i=0;i<size;i++)
+        {
+            if(islower(s[i]))
+            s[i] = (char)toupper(s[i]);
+        }
+        display();
+    }
+};
+int main()
+{
+    char *s1;
+    int choice,l1;
+    cout<<"\n\n Program to perform operations on string";
+    cout<<"\n\n Enter length of string - ";
+    cin>>l1;
+    fflush(stdin);
+    s1 = new char[l1];
+    cout<<"\n Enter string to be stored in class - ";
+    gets(s1);
+    String s(s1);
+    while(1)
+    {
+        char *d;
+        int length;
+        cout<<"\n\n Menu\n 1. String concatenation \n 2. String copy \n 3. String comparison \n 4. Display String \n 5. Display length of string \n 6. Convert string to lowercase \n 7. Convert string to uppercase \n 8. Exit  ";
+        cin>>choice;
+        if(choice==1)
+        {
+            s=s1;
+            cout<<"\n\n Enter the length of new string - ";
+            cin>>length;
+            d = new char[length];
+            fflush(stdin);
+            cout<<"\n Enter the string - ";
+            gets(d);
+            s = s+d;
+            cout<<"\n After concatenation....";
+            s.display();
+        }
+        else if(choice==2)
+        {
+            cout<<"\n\n Enter the length of new string - ";
+            cin>>length;
+            d = new char[length];
+            fflush(stdin);
+            cout<<"\n Enter the string - ";
+            gets(d);
+            s=d;
+            cout<<"\n After copying....";
+            s.display();
+        }
+        else if(choice==3)
+        {
+            cout<<"\n\n Enter the length of new string - ";
+            cin>>length;
+            d = new char[length];
+            fflush(stdin);
+            cout<<"\n Enter the string - ";
+            gets(d);
+            if(!(s<=d))
+            {
+                cout<<"\n Strings are equal";
+            }
+            else
+            {
+                cout<<"\n Strings are not equal";
+            }
+        }
+        else if(choice==4)
+        {
+            s.display();
+        }
+        else if(choice==5)
+        {
+            s.displaylength();
+        }
+        else if(choice==6)
+        {
+            s.Tolower();
+        }
+        else if(choice==7)
+        {
+            s.Toupper();
+        }
+        else if(choice==8)
+        {
+            exit(0);
+        }
+        else
+        {
+            cout<<"\n\n Wrong choice";
+        }
+    }
+    return 0;
+}
+
+Exp5 Create a class called LIST with two pure virtual function store() and retrieve().To store a value call store and to retrieve call retrieve function. Derive two classes stack and queue from it and override store and retrieve
+
+#include<iostream>
+#include<stdlib.h>
+#include<conio.h>
+using namespace std;
+ 
+struct node
+{
+    int data;
+    node *next;
+};
+ 
+node *head=NULL,*tail=NULL;
+ 
+class List
+{
+    public:
+    void view()
+    {
+        node *n = head;
+        if(head==NULL)
+        {
+            cout<<"\n No elements found...";
+        }
+        else
+        {
+            cout<<" ";
+            while(n!=NULL)
+            {
+                if(n->next==NULL)
+                {
+                    cout<<n->data;
+                }
+                else
+                {
+                    cout<<n->data<<"->";
+                }
+                n = n->next;
+            }
+        }
+    }
+    virtual void store(int n)=0;
+    virtual int retrive()=0;
+};
+ 
+class Stack :public List
+{
+    public:
+    void store(int n)
+    {
+        node *n1 = new node();
+        n1->data = n;
+        n1->next=NULL;
+        if((head==NULL)&&(tail==NULL))
+        {
+            head = n1;
+            tail = n1;
+        }
+        else
+        {
+            tail->next = n1;
+            tail = n1;
+        }
+    }
+    int retrive()
+    {
+        if((tail==NULL)&&(head==NULL))
+        {
+            return -1;
+        }
+        else
+        {
+            int n = tail->data;
+            node *n1 = head;
+            while((n1->next!=tail)&&(head!=tail))
+            {
+                n1 = n1->next;
+            }
+            n1->next = NULL;
+            free(tail);
+            if(head!=tail)
+            {
+                tail = n1;
+            }
+            else
+            {
+                tail=NULL;
+                head=NULL;
+            }
+            return n;
+        }
+    }
+};
+ 
+class Queue:public List
+{
+    public:
+    void store(int n)
+    {
+        node *n1 = new node();
+        n1->data = n;
+        n1->next=NULL;
+        if((head==NULL)&&(tail==NULL))
+        {
+            head = n1;
+            tail = n1;
+        }
+        else
+        {
+            tail->next = n1;
+            tail = n1;
+        }
+    }
+    int retrive()
+    {
+        if((tail==NULL)&&(head==NULL))
+        {
+            return -1;
+        }
+        else
+        {
+            int n = head->data;
+            if(head==tail)
+            {
+                head = tail = NULL;
+            }
+            else
+            {
+                head = head->next;
+            }
+            return n;
+        }
+    }
+};
+ 
+int main()
+{
+    Stack s1;
+    int ch;
+    while(1)
+    {
+        system("cls");
+        cout<<"\n\n Program to implement stack and queue using pure virtual functions store and retrieve";
+        cout<<"\n ^^^^^^^ ^^ ^^^^^^^^^ ^^^^^ ^^^ ^^^^^ ^^^^^ ^^^^ ^^^^^^^ ^^^^^^^^^ ^^^^^ ^^^ ^^^^^^^^";
+        cout<<"\n\n Menu";
+        cout<<"\n ^^^^";
+        cout<<"\n\n 1. Stack";
+        cout<<"\n 2. Queue";
+        cout<<"\n 3. Exit";
+        cout<<"\n\n Enter your choice - ";
+        cin>>ch;
+        if(ch==1)
+        {
+            Stack s1;
+            int ch1;
+            while(1)
+            {
+                system("cls");
+                cout<<"\n\n Stack Menu";
+                cout<<"\n ^^^^^ ^^^^";
+                cout<<"\n 1. Push Element";
+                cout<<"\n 2. Pop Element";
+                cout<<"\n 3. View Stack";
+                cout<<"\n 4. Exit";
+                cout<<"\n\n Enter your choice - ";
+                cin>>ch1;
+                if(ch1==1)
+                {
+                    int element;
+                    cout<<"\n Enter the element you want to push - ";
+                    cin>>element;
+                    s1.store(element);
+                    cout<<"\n Element Pushed";
+                }
+                else if(ch1==2)
+                {
+                    int element=0;
+                    element = s1.retrive();
+                    if(element==-1)
+                    {
+                        cout<<"\n Stack is Empty";
+                    }
+                    else
+                    {
+                        cout<<"\n Element Popped = "<<element;
+                    }
+                }
+                else if(ch1==3)
+                {
+                    cout<<"\n Elements in stack from bottom to top:- ";
+                    s1.view();
+                }
+                else if(ch1==4)
+                {
+                    break;
+                }
+                else
+                {
+                    cout<<"\n\n Wrong choice";
+                }
+                getch();
+            }
+        }
+        else if(ch==2)
+        {
+            Queue q1;
+            int ch1;
+            while(1)
+            {
+                system("cls");
+                cout<<"\n\n Queue Menu";
+                cout<<"\n ^^^^^ ^^^^";
+                cout<<"\n 1. Push Element";
+                cout<<"\n 2. Pop Element";
+                cout<<"\n 3. View Queue";
+                cout<<"\n 4. Exit";
+                cout<<"\n\n Enter your choice - ";
+                cin>>ch1;
+                if(ch1==1)
+                {
+                    int element;
+                    cout<<"\n Enter the element you want to push - ";
+                    cin>>element;
+                    q1.store(element);
+                    cout<<"\n Element Pushed";
+                }
+                else if(ch1==2)
+                {
+                    int element=0;
+                    element = q1.retrive();
+                    if(element==-1)
+                    {
+                        cout<<"\n Queue is Empty";
+                    }
+                    else
+                    {
+                        cout<<"\n Element Popped = "<<element;
+                    }
+                }
+                else if(ch1==3)
+                {
+                    cout<<"\n Elements in queue from front to rear:- ";
+                    q1.view();
+                }
+                else if(ch1==4)
+                {
+                    break;
+                }
+                else
+                {
+                    cout<<"\n\n Wrong choice";
+                }
+                getch();
+            }
+        }
+        else if(ch==3)
+        {
+            exit(0);
+        }
+        else
+        {
+            cout<<"\n\n Wrong Choice";
+        }
+        getch();
+    }
+    return 0;
+}
+
+Exp6Write a program to define the function template for calculating the square of given numbers with different data types.
+
+#include<iostream>
+using namespace std;
+template <class T>
+T square(T n){
+return n * n;
+}
+int main()
+{
+int int_number;
+float float_number;
+int x;
+int y;
+cout << "Enter a integer number: ";
+cin >> int_number;
+cout << "Square of the integer number: " << square(int_number) << endl;
+cout << "Enter a floating-point number: ";
+cin >> float_number;
+cout << "Square of the floating-point number: " << square(float_number) << endl;
+return 0;
+}
+
+
+
+Exp7 Write a program to demonstrate the use of special functions, constructor and destructor in the class template. The program is used to find the bigger of two entered numbers.
+
+#include<iostream>
+using namespace std;
+template<class T>
+class large{
+T a,b;
+public:
+large(T x, T y){
+a = x;
+b = y;
+}
+void largest(){
+if(a>b){
+cout<<"Greater value is: "<<a<<"\n";
+}
+else{
+cout<<"Greater value is: "<<b<<"\n";
+}
+}
+~large(){}
+};
+int main(){
+int a,b;
+cout<<"enter two integers: ";
+cin>>a>>b;
+large<int>g(a,b);
+g.largest();
+float c,d;
+cout<<"enter two float numbers: ";
+cin>>c>>d;
+large<float>h(c,d);
+h.largest();
+char e,f;
+cout<<"enter two characters: ";
+cin>>e>>f;
+large<char> i(e,f);
+i.largest();
+return 0;
+}
+
+Exp8 Write a program to perform the deletion of white spaces such as horizontal tab, vertical tab, space ,line 
+feed ,new line and carriage return from a text file and store the contents of the file without the white 
+spaces on another file.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+int main(){
+    ifstream fin("test.txt");
+    ofstream fout("test1.txt");
+    char ch[1000];
+    cout<<"enter the file name to be read"<<endl;
+    if(fin){
+        cout<<"file found"<<endl;
+    }
+    else{
+        cout<<"file not found"<<endl;  
+    }
+    cout<<"enter the output file"<<endl;
+    if(fout){
+        cout<<"output file found"<<endl;
+    }
+    else{
+        cout<<"output file not found"<<endl;
+    }
+    while(!fin.eof()){
+        fin>>ch;
+        if(ch==" " || ch=="t" || ch=="/n"){
+            continue;
+        }
+        else{
+            fout<<ch;
+        }
+  }
+
+Exp9 Write a program to read the class object of student info such as name , age ,sex ,height and weight from 
+the keyboard and to store them on a specified file using read() and write() functions. Again the same file is 
+opened for reading and displaying the contents of the file on the screen. 
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+class student_info{
+    char name[20];
+    int age;
+    char sex;
+    float height;
+    float weight;
+    public:
+    void read(){
+        cout<<"enter name"<<endl;
+        cin>>name;
+        cout<<"enter age"<<endl;
+        cin>>age;
+        cout<<"enter gender"<<endl;
+        cin>>sex;
+        cout<<"enter height"<<endl;
+        cin>>height;
+        cout<<"enter weight"<<endl;
+        cin>>weight;
+    }
+    void write(){
+        cout<<"name :"<<name;
+        cout<<"age :"<<age;
+        cout<<"gender :"<<sex;
+        cout<<"height :"<<height;
+        cout<<"weight :"<<weight;
+        
+    }
+};
+int main(){
+    int n;
+    cout<<"enter how many records are to be stored: ";
+    cin>>n;
+    student_info s[n];
+    ofstream fout;
+    fout.open("test.txt");
+    for(int i=0;i<n;i++){
+        s[i].read();
+        fout.write((char*)&s[i],sizeof(s[i]));   
+    }
+    fout.close();
+    ifstream fin;
+    cout<<"displaying the content"<<endl;
+    fin.open("test.txt");
+    for(int i=0;i<n;i++){
+        while(fin.read((char*)&s[i],sizeof(s[i]))){
+            s[i].write();
+        }
+    }
+    fin.close();
+    return 0;
+}
+
+
+Exp10 Write a program to raise an exception if any attempt is made to refer to an element whose index is beyond 
+the array size. 
+
+#include <iostream>
+#include <stdexcept>
+const int kArraySize = 10;
+int main() {
+  int array[kArraySize];
+  try {
+    int index;
+    std::cout << "Enter an index: ";
+    std::cin >> index;
+    if (index < 0 || index >= kArraySize) {
+      throw std::out_of_range("Index out of range");
+    }
+    std::cout << "array[" << index << "] = " << array[index] << std::endl;
+  } catch (const std::out_of_range& e) {
+    std::cerr << e.what() << std::endl;
+  }
+  return 0;
+}
+
